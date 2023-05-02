@@ -38,7 +38,7 @@ router.beforeEach((to) => {
   const isLoginIn = useUserStore.user != null;
   console.log(UserStore.user)
 
-  if (!isLoginIn && to.name != 'signIn' && to.name != 'signUp') {
+  if (!isLoginIn && to.name !== 'signIn' && to.name !== 'signUp') {
     return { name: 'signIn'}
   }
 

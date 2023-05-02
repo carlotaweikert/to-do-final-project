@@ -21,14 +21,14 @@ export default {
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <header class="header">
+    <img alt="Dodo logo" class="logo" src="@/assets/dodo-nav.png" width="100" height="50" />
 
     <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/auth/sign-in">Sign in</RouterLink>
-        <RouterLink to="/auth/sign-up">Sign up</RouterLink>
+      <nav class="navigation">
+        <RouterLink to="/" class="routerLink">My Tasks</RouterLink>
+        <RouterLink to="/auth/sign-in">Log In</RouterLink>
+        <RouterLink to="/auth/sign-up" class="signUp">Sign up</RouterLink>
       </nav>
     </div>
   </header>
@@ -37,65 +37,75 @@ export default {
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+
+.header {
+  display:flex;
+  margin-bottom: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+  width: auto;
 }
 
 .logo {
   display: block;
-  margin: 0 auto 2rem;
+  margin-right: 20px;
+  margin-top: 20px;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  margin-top: 32px;
+  justify-content: flex-start;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.routerLink {
+  padding-left: 40px;
+  color: #7563E7;
+  text-decoration: none;
+  font-size: 18px;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.routerLink:hover {
+  color: #342C68;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+.navigation a {
+  padding-left: 40px;
+  color: #7563E7;
+  text-decoration: none;
+  font-size: 18px; 
 }
 
-nav a:first-of-type {
-  border: 0;
+.navigation .signUp {
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 18px;
+  margin-top: 0px;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+.navigation .signUp:hover {
+  color: #342C68;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+.navigation a.router-link-exact-active {
+  color: #342C68;
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.signUp {
+  background-color: #7563E7;
+  border-radius: 50px;
+  margin-left: 40px;
+}
 
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.signUp:hover {
+  background-color: #C1B9F2;
+  border-radius: 50px;
+  margin-left: 40px;
 }
 </style>
