@@ -1,101 +1,97 @@
-<script>
-import { RouterLink, RouterView } from 'vue-router'
-import { mapActions } from 'pinia';
-import UserStore from '@/stores/user.js';
+<script setup>
+import { useRouter } from 'vue-router'
+import defineStore from '@/stores/user.js'
+// import { computed } from "vue"
+// import useUserStore from "@/stores/user.js"
 
-export default {
-  name: 'App',
-  components: {
-    RouterView,
-    RouterLink,
-  },
-  methods: {
-    ... mapActions(UserStore, ['fetchUser'])
-  },
-  async created () {
-    await this.fetchUser()
+// const isUserAuthenticated = computed(() => !!store.state.user.user)
+// const store = useUserStore
+// const user = computed(() => store.state.user.user)
 
-  } 
+const router = useRouter()
+const userStore = defineStore()
+const handleSignOut = async () => {
+  await userStore.signOut()
+  router.push({ name: 'signIn' })
 }
-
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
+  <header class="header">
+    <img alt="Vue logo" class="logo" src="./assets/pinkCheck.png" width="125" height="125" />
     <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/auth/sign-in">Sign in</RouterLink>
-        <RouterLink to="/auth/sign-up">Sign up</RouterLink>
+      <nav class="navBar">
+        <RouterLink to="/" class="router-link">To Do List</RouterLink>
+        <RouterLink to="/auth/sign-in" class="router-link">Sign In</RouterLink>
+        <RouterLink to="/auth/sign-up" class="router-link">Sign Up</RouterLink>
+        <button @click="handleSignOut" class="router-link router-button">Sign Out</button>
       </nav>
     </div>
   </header>
-
   <RouterView />
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+.header {
+  display: flex;
+  margin-bottom: 30px;
+  margin-left: 27vw;
+  margin-right: 23vw;
+  width: 50vw;
+}
+.navBar {
+  display: flex;
+  width: 50vw;
+  justify-content: flex-start;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.router-link {
+  padding-left: 40px;
+  color: rgba(238, 201, 148, 255);
+  text-decoration: none;
+  font-size: 1.2rem;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+.router-link:hover {
+  padding-left: 40px;
+  color: white;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
+.router-button {
   background-color: transparent;
+  border-radius: 0%;
+  border-color: transparent;
+}
+.logo {
+  width: 30px;
+  height: 30px;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+@media (max-width: 768px) {
+  .navBar {
+    justify-content: space-around;
+    width: 60vw;
+  }
+
+  .router-link {
+    padding-left: 30px;
+  }
 }
 
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
+@media (max-width: 505px) {
+  .router-link {
     font-size: 1rem;
+  }
+}
 
-    padding: 1rem 0;
-    margin-top: 1rem;
+@media (max-width: 480px) {
+  .navBar {
+    justify-content: space-around;
+    width: 55vw;
+  }
+
+  .router-link {
+    padding-left: 20px;
   }
 }
 </style>

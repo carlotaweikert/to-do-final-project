@@ -1,11 +1,9 @@
-<script>
-export default {
-  name: 'HomeView'
-}
+<script setup>
+import ToDoList from '../components/ToDoList.vue'
 </script>
 
 <template>
   <main>
-    <h1>Home View</h1> 
+    <ToDoList />
   </main>
 </template>

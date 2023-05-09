@@ -1,20 +1,15 @@
-<template>
-    <h1>Auth View</h1>
-    <RouterView />
-</template>
-
 <script>
-import { RouterView } from 'vue-router';
-
+import { RouterView } from 'vue-router'
 export default {
-    name: 'AuthView',
-    components: {
-    RouterView,
+  name: 'AuthView',
+  components: {
+    RouterView
+  }
 }
-}
-
 </script>
 
-<style>
-</style>
-
+<template>
+  <main>
+    <RouterView />
+  </main>
+</template>
