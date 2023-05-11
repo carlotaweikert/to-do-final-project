@@ -105,8 +105,7 @@
   }
 
   .login-button:active {
-	background-color: rgba(152,131,162,255);
-	color: rgba(89,74,97,255);
+	background-color: #D8D4F1;
   }
 
 
