@@ -18,11 +18,11 @@ const handleSignOut = async () => {
 
 <template>
   <header class="header">
-    <img alt="Vue logo" class="logo" src="./assets/pinkCheck.png" width="125" height="125" />
+    <img alt="Dodo logo" class="navLogo" src="./assets/dodo-nav.png" />
     <div class="wrapper">
       <nav class="navBar">
         <RouterLink to="/" class="router-link">To Do List</RouterLink>
-        <RouterLink to="/auth/sign-in" class="router-link">Sign In</RouterLink>
+        <RouterLink to="/auth/sign-in" class="router-link">Log In</RouterLink>
         <RouterLink to="/auth/sign-up" class="router-link">Sign Up</RouterLink>
         <button @click="handleSignOut" class="router-link router-button">Sign Out</button>
       </nav>
@@ -38,23 +38,27 @@ const handleSignOut = async () => {
   margin-left: 27vw;
   margin-right: 23vw;
   width: 50vw;
+  margin-top: 50px;
 }
 .navBar {
   display: flex;
   width: 50vw;
   justify-content: flex-start;
+  padding-top: 8px;
+  font-size: 12px;
 }
 
 .router-link {
   padding-left: 40px;
-  color: rgba(238, 201, 148, 255);
+  color: #7563e7;
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 16px;
+  font-family: 'Montserrat';
 }
 
 .router-link:hover {
   padding-left: 40px;
-  color: white;
+  color: #d8d4f1;
 }
 
 .router-button {
@@ -62,9 +66,10 @@ const handleSignOut = async () => {
   border-radius: 0%;
   border-color: transparent;
 }
-.logo {
-  width: 30px;
-  height: 30px;
+.navLogo {
+  width: 120px;
+  height: 50px;
+  padding-bottom: 10px;
 }
 
 @media (max-width: 768px) {

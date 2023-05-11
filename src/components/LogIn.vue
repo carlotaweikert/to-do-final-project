@@ -1,33 +1,33 @@
 <template>
-  <!-- https://www.figma.com/file/d1OI5eCagifyaeVTS70YaW/Login-Page-design-(Community)?node-id=0-1&t=NYn4fDM90f6ZRCYm-0 -->
-  <div class="container user">
-    <div id="main-info">
-      <h1 class="title">Sign in</h1>
-      <p class="subtitle">Sign in and start managing your tasks!</p>
-      <form action="" @submit.prevent @keyup.enter="_handleSignIn" class="connect">
+  <div class="LogInform">
+    <div>
+      <h1 class="title">Log in</h1>
+      <p class="subtitle">Let's start managing your tasks!</p>
+      <form>
         <div class="container-input">
-          <input type="text" id="input-email" name="email" placeholder="Email" v-model="email" />
+          <input type="text" class="form-input" name="email" placeholder="Email" v-model="email" />
         </div>
         <div class="container-input">
           <input
             type="password"
-            id="input-password"
+            class="form-input"
             name="password"
             placeholder="Password"
             v-model="password"
           />
         </div>
         <p class="warn"></p>
-        <div id="connect-forgot">
-          <router-link to="/auth/forgot-password">Forgot password?</router-link>
+        <div>
+          <router-link to="/auth/forgot-password"></router-link>
         </div>
-        <button class="btn btn-primary" type="button" @click="_handleSignIn">Login</button>
+        <div class="button-div">
+          <button class="login-button" type="button" @click="_handleSignIn">Login</button>
+        </div>
       </form>
-      <div class="connect-change">
-        <router-link to="/auth/sign-up"
-          ><fa icon="fa-solid fa-circle-arrow-right" /> New user? Click here to
-          <u>Sign Up</u></router-link
-        >
+      <div class="LogIn-alert-div">
+        <div class="LogIn-alert">
+          <router-link to="/auth/sign-up"><fa /> Don't have an account? <u>Sign Up</u></router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -92,17 +92,51 @@ export default {
 }
 </script>
 
-<style scoped>
-body {
-  overflow-y: hidden !important;
+<style>
+.LogInform {
+  width: 50vw;
+  max-height: 100%;
+  margin-left: 25vw;
+  margin-right: 25vw;
+  padding: 25px;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  overflow: auto;
+  background-color: #d8d4f1;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
 }
-#connect-forgot {
-  text-align: center;
-  margin-bottom: 25px;
+
+.title {
+  color: #7563e7;
+  display: flex;
+  justify-content: center;
+  font-family: 'Montserrat';
 }
-#connect-forgot a {
-  color: var(--green-accent);
-  font-size: 14px;
-  cursor: pointer;
+
+.subtitle {
+  color: #7563e7;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+  font-family: 'Montserrat';
+}
+
+.button-div {
+  display: flex;
+  justify-content: center;
+}
+
+.LogIn-alert {
+  font-size: 12px;
+  padding-top: 10px;
+  text-decoration: none;
+  font-family: 'Montserrat';
+}
+
+.LogIn-alert-div {
+  display: flex;
+  justify-content: center;
 }
 </style>

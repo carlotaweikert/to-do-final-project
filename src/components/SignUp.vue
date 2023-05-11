@@ -1,42 +1,31 @@
 <template>
-  <div class="container user">
-    <div id="main-info">
+  <div class="LogInform">
+    <div>
       <h1 class="title">Sign up</h1>
       <p class="subtitle">Sign up and start managing your tasks!</p>
       <form action="" @submit.prevent @keyup.enter="_handleSignUp" class="connect">
-        <div class="container-input">
-          <input type="text" id="input-email" name="email" placeholder="Email" v-model="email" />
+        <div class="container-input-up">
+          <input type="text" class="form-input" name="email" placeholder="Email" v-model="email" />
         </div>
-        <div class="container-input">
-          <input
-            type="password"
-            id="input-password"
-            name="password"
-            placeholder="Password"
-            v-model="password"
-          /><br />
-        </div>
-        <div class="container-input">
-          <input
-            type="password"
-            id="input-confirmPassword"
-            name="confirmPassword"
-            placeholder="Confirm password"
-            v-model="confirmPassword"
-          />
+        <div class="container-input-up">
+          <input type="password" class= "form-input" name="password" placeholder="Password" v-model="password" /><br />
         </div>
         <p class="warn"></p>
-        <button
-          class="btn btn-primary"
-          type="button"
-          @click="_handleSignUp"
-          @keyup.enter="_handleSignUp"
-        >
-          Sign Up
-        </button>
+        <div class="button-div">
+          <button
+            class="login-button"
+            type="button"
+            @click="_handleSignUp"
+            @keyup.enter="_handleSignUp"
+          >
+            Sign Up
+          </button>
+        </div>
       </form>
-      <div class="connect-change">
-        <router-link to="/auth/sign-in">Already a user? Click here to <u>Login</u></router-link>
+      <div class="LogIn-alert-div">
+        <div class="LogIn-alert">
+          <router-link to="/auth/sign-in">Do you have an account? <u>Log In</u></router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -64,7 +53,7 @@ export default {
 
     async _handleSignUp() {
       // Reset errors and fields
-    //   removeError()
+      //   removeError()
       document.querySelector('input#input-email').classList.remove('error')
       document.querySelector('input#input-password').classList.remove('error')
       document.querySelector('input#input-confirmPassword').classList.remove('error')
@@ -106,11 +95,11 @@ export default {
 }
 </script>
 
-<style scoped>
-.warn.textError {
-  margin-bottom: 30px;
+<style>
+
+.container-input-up {
+    display: flex; 
+    justify-content: center;
 }
-div.container-input:nth-child(2) {
-  margin-bottom: 15px;
-}
+
 </style>

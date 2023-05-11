@@ -43,6 +43,7 @@ const completeTask = (task) => {
 }
 </script>
 
+
 <template>
   <div class="app-container" id="tasklist">
     <h1 class="app-header">TO DO LIST</h1>
@@ -56,6 +57,7 @@ const completeTask = (task) => {
           <input type="checkbox" v-model="task.is_completed" @change="completeTask(task)" />
         </label>
         <span
+          v-if="!task.editing"
           @dblclick="task.editing = true"
           :class="{ completed: task.is_completed, editing: task.editing }"
           contenteditable
