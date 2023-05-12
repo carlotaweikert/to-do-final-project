@@ -1,12 +1,14 @@
-<template>
-    <h1>SignIn View</h1>
-</template>
-
-<script>
-export default {
-    name: 'SignInView'
-}
+<script setup>
+import LogIn from "../components/LogIn.vue"
 </script>
 
+<template>
+  <main>
+    <LogIn/>
+  </main>
+</template>
+
+
 <style>
+
 </style>

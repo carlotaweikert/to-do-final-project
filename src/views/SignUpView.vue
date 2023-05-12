@@ -1,12 +1,10 @@
-<template>
-    <h1>SignUp View</h1>
-</template>
 
-<script>
-export default {
-    name: 'SignUpView'
-}
+<script setup>
+import SignUp from "../components/Signup.vue"
 </script>
 
-<style>
-</style>
+<template>
+  <main>
+    <SignUp />
+  </main>
+</template>

@@ -1,0 +1,158 @@
+<template>
+  <ul class="task-list">
+    <li v-for="task in tasks" :key="task.id" class="task-list-item">
+      <label class="task-list-item-label">
+        <input
+          :class="{ checkboxcomplete: task.is_completed }"
+          class="checkbox"
+          type="checkbox"
+          v-model="task.is_completed"
+          @change="completeTask(task)"
+        />
+      </label>
+      <div style="width: 100%" @dblclick="startEditing(task)">
+        <span v-if="!task.editing" :class="{ completed: task.is_completed }">{{ task.title }}</span>
+        <input
+          class="task-created"
+          type="text"
+          v-if="task.editing"
+          v-model="task.title"
+          @keydown.enter="finishEditing(task)"
+          @blur="finishEditing(task)"
+        />
+        <button class="cancel-btn" v-if="task.editing" @click="cancelEditing(task)">Cancel</button>
+        <button class="save-btn" v-if="task.editing" @click="finishEditing(task)">Save</button>
+      </div>
+      <button @click="deleteTask(task.id)" class="delete-btn" title="Delete Task">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 550 647"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M486.842 180.839H62.5755C42.0448 180.839 27.0342 197.563 29.1222 217.948L70.4142 609.122C72.5809 629.507 91.0968 646.231 111.628 646.231H437.628C458.158 646.231 476.753 629.507 478.841 609.122L520.133 217.948C522.3 197.563 507.216 180.839 486.68 180.839H486.842ZM167.562 554.772H166.442C160.765 554.772 155.838 550.444 155.317 544.694L128.812 271.334C128.213 265.209 132.692 259.688 138.89 259.089C144.937 258.49 150.536 262.97 151.135 269.167L177.64 542.527C178.239 548.653 173.76 554.173 167.562 554.772ZM285.912 543.647C285.912 549.845 280.906 554.845 274.714 554.845C268.516 554.845 263.516 549.84 263.516 543.647V270.287C263.516 264.089 268.521 259.089 274.714 259.089C280.912 259.089 285.912 264.094 285.912 270.287V543.647ZM394.105 544.767C393.506 550.59 388.652 554.845 382.98 554.845H381.86C375.662 554.246 371.183 548.798 371.782 542.6L398.287 269.24C398.886 263.042 404.485 258.563 410.532 259.162C416.73 259.761 421.209 265.209 420.61 271.407L394.105 544.767Z"
+            fill="#7563E7"
+          />
+          <path
+            d="M512.149 48.1613H318.309V38.828C318.309 17.4013 301.585 0 280.975 0H268.507C247.897 0 231.173 17.396 231.173 38.828V48.1613H37.3333C16.8027 48.1613 0 64.964 0 85.4947V100.427C0 120.957 16.8027 137.76 37.3333 137.76H512.147C532.677 137.76 549.48 120.957 549.48 100.427V85.4947C549.48 64.964 532.677 48.1613 512.147 48.1613H512.149Z"
+            fill="#7563E7"
+          />
+        </svg>
+      </button>
+    </li>
+  </ul>
+</template>
+<script>
+export default {
+  props: {
+    tasks: {
+      type: Array,
+      required: true
+    }
+  },
+  methods: {
+    completeTask(task) {
+      this.$emit('complete-task', task)
+    },
+    startEditing(task) {
+      console.log('hey')
+      task.editing = true
+    },
+    finishEditing(task) {
+      if (!task.title.trim()) {
+        this.deleteTask(task.id)
+        return
+      }
+
+      task.editing = false
+      this.$emit('edit-task', task)
+    },
+    cancelEditing(task) {
+      task.editing = false
+    },
+    deleteTask(id) {
+      this.$emit('delete-task', id)
+    }
+  }
+}
+</script>
+
+<style>
+.checkbox {
+  cursor: pointer;
+}
+
+.checkboxcomplete {
+  background-color: #7563e7 !important;
+}
+.delete-btn {
+  background-color: #ffffff;
+  border: none;
+  display: flex;
+}
+.delete-btn svg {
+  margin-top: 2.2px;
+}
+
+.task-created {
+  width: 60%;
+  border: none;
+  font-family: 'montserrat';
+  margin: 0 10px 0 10px;
+  padding-right: 5px;
+}
+
+.cancel-btn {
+  background-color: #662d97;
+  color: #ffffff;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  font-weight: 500;
+  padding: 5px 5px;
+  cursor: pointer;
+  font-family: 'montserrat';
+}
+
+.cancel-btn:hover {
+  background-color: #f1f3f4;
+  color: #616161;
+}
+
+.cancel-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #4285f4;
+  border-color: #4285f4;
+}
+
+.cancel-btn:active {
+  background-color: #dadce0;
+}
+
+.save-btn {
+  background-color: #7563e7;
+  color: #ffffff;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  font-weight: 500;
+  padding: 5px 1px;
+  cursor: pointer;
+  font-family: 'montserrat';
+}
+
+.save-btn:hover {
+  background-color: #f1f3f4;
+  color: #616161;
+}
+
+.save-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #4285f4;
+  border-color: #4285f4;
+}
+
+.save-btn:active {
+  background-color: #dadce0;
+}
+</style>
