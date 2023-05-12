@@ -1,12 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import defineStore from '@/stores/user.js'
-// import { computed } from "vue"
-// import useUserStore from "@/stores/user.js"
-
-// const isUserAuthenticated = computed(() => !!store.state.user.user)
-// const store = useUserStore
-// const user = computed(() => store.state.user.user)
 
 const router = useRouter()
 const userStore = defineStore()

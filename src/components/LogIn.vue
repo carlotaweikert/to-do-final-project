@@ -21,7 +21,7 @@
           <router-link to="/auth/forgot-password"></router-link>
         </div>
         <div class="button-div">
-          <button class="login-button" type="button" @click="_handleSignIn">Login</button>
+          <button class="login-button" type="button" @click="handleSignIn">Login</button>
         </div>
       </form>
       <div class="LogIn-alert-div">
@@ -36,57 +36,26 @@
 <script>
 import { mapState, mapActions } from 'pinia'
 import UserStore from '@/stores/user.js'
-// import { showError, removeError, showSuccess } from '@/assets/utils.js'
 
 export default {
   name: 'SignIn',
   data() {
     return {
       email: '',
-      password: '',
-      toast: null
+      password: ''
     }
   },
   computed: {
     ...mapState(UserStore, ['user'])
   },
   methods: {
-    ...mapActions(UserStore, ['_validateEmail', '_validatePassword', 'signIn']),
+    ...mapActions(UserStore, ['signIn']),
 
-    async _handleSignIn() {
-      // Reset errors and fields
-      //   removeError()
-      document.querySelector('input#input-email').classList.remove('error')
-      document.querySelector('input#input-password').classList.remove('error')
-
-      // Validate email
-      if (!this._validateEmail(this.email)) {
-        // showError('Enter a valid email!')
-        document.querySelector('input#input-email').classList.add('error')
-        return
-      }
-      // Validate password
-      if (!this._validatePassword(this.password)) {
-        // showError('Password must be at least 6 characters long.')
-        document.querySelector('input#input-password').classList.add('error')
-        return
-      }
-
-      // If valid, continue login
+    async handleSignIn() {
       const userData = { email: this.email, password: this.password }
-      try {
-        await this.signIn(userData)
-        // showSuccess('Welcome back :)')
-        // Hide elements
-        document.querySelector('#connect-forgot').style.display = 'none'
-        document.querySelector('.btn.btn-primary').disabled = true
-        // Redirect to home
-        setTimeout(() => {
-          this.$router.push({ name: 'home' })
-        }, 2000)
-      } catch (error) {
-        // showError(error.message)
-      }
+      await this.signIn(userData)
+
+      this.$router.push({ name: 'home' })
     }
   }
 }
